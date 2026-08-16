@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    Optional<Student> findByIdAndIsActiveIsTrue(Long id);
+    Optional<Student> findByIdAndIsActiveIsTrue(Long id);//
+    Optional<Student> findByIdAndIsActiveIsFalse(Long id);
     List<Student> findByIsActiveIsTrue();
+    List<Student> findByIsActiveIsFalse();
 }

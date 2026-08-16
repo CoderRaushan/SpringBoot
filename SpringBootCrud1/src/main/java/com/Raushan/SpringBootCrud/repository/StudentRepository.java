@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface StudentRepository extends JpaRepository<Student, Long> {
     Optional<Student> findByIdAndIsActiveIsTrue(Long id);
     List<Student> findByIsActiveIsTrue();
+    Boolean existsByEmail(String email);
 }

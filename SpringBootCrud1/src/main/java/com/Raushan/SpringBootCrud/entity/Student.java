@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Student {
     @Id
@@ -16,6 +18,18 @@ public class Student {
     private int age;
     private int rollNo;
     private String subject;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private Boolean isActive;
+
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public Boolean getActive() {
         return isActive;
@@ -25,7 +39,7 @@ public class Student {
         isActive = active;
     }
 
-    private Boolean isActive;
+
 
     public String getName() {
         return name;
@@ -73,5 +87,12 @@ public class Student {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

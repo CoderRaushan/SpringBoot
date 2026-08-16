@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
+@CrossOrigin(origins = "https://springbootcrud.netlify.app")
 public class studentController {
     private StudentService studentService;
     public studentController(StudentService studentService)
@@ -43,6 +44,19 @@ public class studentController {
     @GetMapping("/getAll")
     public ResponseEntity<List<Student>> getAllStudent(){
         List<Student> studentRes = studentService.getAllStudent();
+        if(studentRes.isEmpty())
+        {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(studentRes);
+    }
+    @GetMapping("/getAll/inactive")
+    public ResponseEntity<List<Student>> getAlInActiveStudent(){
+        List<Student> studentRes = studentService.getAlInActiveStudent();
         if(studentRes.isEmpty())
         {
             return ResponseEntity
@@ -93,6 +107,20 @@ public class studentController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body("Soft Delete successful!");
+    }
+
+    @PatchMapping("/active/{id}")
+    public ResponseEntity<String> activeStudent( @PathVariable  Long id){
+        Boolean studentRes = studentService.activeStudent(id);
+        if(!studentRes)
+        {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Student Account is active now!");
     }
 
 }

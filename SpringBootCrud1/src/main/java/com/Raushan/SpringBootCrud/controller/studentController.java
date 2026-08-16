@@ -1,13 +1,18 @@
 package com.Raushan.SpringBootCrud.controller;
 
+import com.Raushan.SpringBootCrud.dto.CreateStudentRequestDto;
+import com.Raushan.SpringBootCrud.dto.CreateStudentResponseDto;
+import com.Raushan.SpringBootCrud.dto.UpdateStudentRequestDto;
+import com.Raushan.SpringBootCrud.dto.UpdateStudentResponseDto;
 import com.Raushan.SpringBootCrud.entity.Student;
 import com.Raushan.SpringBootCrud.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
@@ -18,9 +23,9 @@ public class studentController {
         this.studentService=studentService;
     }
     @PostMapping("/create")
-   public ResponseEntity<Student> createStudents(@RequestBody Student student)
+   public ResponseEntity<CreateStudentResponseDto> createStudents(@Valid @RequestBody  CreateStudentRequestDto studentResDto)
     {
-        Student createdStudent = studentService.createStudent(student);
+        CreateStudentResponseDto createdStudent = studentService.createStudent(studentResDto);
         return ResponseEntity.
                 status(HttpStatus.CREATED).
                 body(createdStudent);
@@ -28,14 +33,8 @@ public class studentController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<Student> getStudent( @PathVariable  Long id){
-       Student studentRes= studentService.getStudent(id);
-       if(studentRes==null)
-       {
-           return ResponseEntity
-                   .status(HttpStatus.NOT_FOUND)
-                   .body(null);
-       }
-       return ResponseEntity
+        Student studentRes = studentService.getStudent(id);
+        return ResponseEntity
                .status(HttpStatus.OK)
                .body(studentRes);
     }
@@ -43,25 +42,14 @@ public class studentController {
     @GetMapping("/getAll")
     public ResponseEntity<List<Student>> getAllStudent(){
         List<Student> studentRes = studentService.getAllStudent();
-        if(studentRes.isEmpty())
-        {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(null);
-        }
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(studentRes);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<Student> updateStudent( @PathVariable  Long id,@RequestBody Student student){
-        Student studentRes = studentService.updateStudent(id,student);
-        if(studentRes==null)
-        {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(null);
-        }
+    public ResponseEntity<UpdateStudentResponseDto>
+    updateStudent( @PathVariable  Long id,@RequestBody UpdateStudentRequestDto stuReqDto){
+        UpdateStudentResponseDto studentRes = studentService.updateStudent(id,stuReqDto);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(studentRes);
@@ -69,13 +57,7 @@ public class studentController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteStudent( @PathVariable  Long id){
-        Boolean studentRes = studentService.deleteStudent(id);
-        if(!studentRes)
-        {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(null);
-        }
+       studentService.deleteStudent(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body("Record Deleted!");
@@ -83,13 +65,7 @@ public class studentController {
 
     @PatchMapping("/softDelete/{id}")
     public ResponseEntity<String> softDeleteStudent( @PathVariable  Long id){
-        Boolean studentRes = studentService.softDeleteStudent(id);
-        if(!studentRes)
-        {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(null);
-        }
+        studentService.softDeleteStudent(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body("Soft Delete successful!");

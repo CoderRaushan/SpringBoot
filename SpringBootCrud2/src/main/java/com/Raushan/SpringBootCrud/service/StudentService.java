@@ -39,6 +39,11 @@ public class StudentService {
         List<Student> studentRes = studentRepository.findByIsActiveIsTrue();
         return studentRes;
     }
+    public List<Student> getAlInActiveStudent()
+    {
+        List<Student> studentRes = studentRepository.findByIsActiveIsFalse();
+        return studentRes;
+    }
     public Student updateStudent(Long id, Student student)
     {
         Optional<Student>studentRes = studentRepository.findByIdAndIsActiveIsTrue(id);
@@ -75,6 +80,18 @@ public class StudentService {
            studentToDel.setActive(false);
            studentRepository.save(studentToDel);
            return true;
+        }
+        return false;
+    }
+    public Boolean activeStudent(Long id)
+    {
+        Optional<Student>studentRes = studentRepository.findByIdAndIsActiveIsFalse(id);
+        if(studentRes.isPresent())
+        {
+            Student studentToDel = studentRes.get();
+            studentToDel.setActive(true);
+            studentRepository.save(studentToDel);
+            return true;
         }
         return false;
     }
