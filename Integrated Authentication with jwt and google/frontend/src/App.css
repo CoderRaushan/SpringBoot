@@ -1,0 +1,160 @@
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+}
+
+.auth-card h1 {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.auth-form input {
+  padding: 10px 12px;
+  border: 1px solid #d5d5d5;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.auth-form input:focus {
+  border-color: #4285f4;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #1a1a1a;
+  color: #fff;
+  margin-top: 4px;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-google {
+  background: #fff;
+  color: #3c4043;
+  border: 1px solid #d5d5d5;
+}
+
+.btn-google:hover {
+  background: #f7f7f7;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #999;
+  font-size: 0.75rem;
+  margin: 18px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.divider span {
+  padding: 0 10px;
+}
+
+.error-text {
+  background: #fdecea;
+  color: #b3261e;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.info-text {
+  background: #eaf3ff;
+  color: #1a5fb4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.switch-mode {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #4285f4;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.profile-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f7f8fa;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 18px 0;
+}
+
+.profile-box > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.profile-box .label {
+  color: #888;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WorkspaceSettings">
+    <project name="GatewayService" path="$PROJECT_DIR$/../GatewayService" />
+    <project name="ApiManagementService" path="$PROJECT_DIR$/../ApiManagementService" />
+    <project name="AnalyticsService" path="$PROJECT_DIR$/../AnalyticsService" />
+    <option name="workspace" value="true" />
+  </component>
+</project>
