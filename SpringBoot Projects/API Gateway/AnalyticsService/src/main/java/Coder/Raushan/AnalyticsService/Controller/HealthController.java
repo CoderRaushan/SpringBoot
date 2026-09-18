@@ -1,6 +1,6 @@
-package Coder.Raushan.GatewayService.controller;
+package Coder.Raushan.AnalyticsService.Controller;
 
-import Coder.Raushan.GatewayService.dto.HealthResponseDTO;
+import Coder.Raushan.AnalyticsService.dto.HealthResponseDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +20,8 @@ public class HealthController {
         serviceDescription=Description;
     }
     @RequestMapping
-     public ResponseEntity<HealthResponseDTO> health()
-     {
+    public ResponseEntity<HealthResponseDTO> health()
+    {
         return ResponseEntity.ok(new HealthResponseDTO(serviceName,serviceDescription,"up"));
-     }
+    }
 }
