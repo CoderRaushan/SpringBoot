@@ -1,27 +1,26 @@
 package Coder.Raushan.ApiManagementService.Controller;
 
 import Coder.Raushan.ApiManagementService.dto.HealthResponseDTO;
+import Coder.Raushan.ApiManagementService.service.HealthService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/health")
 public class HealthController {
-    private String serviceName;
-    private String serviceDescription;
-
-    public HealthController(@Value("${info.app.name}")String Name,
-                            @Value("${info.app.description}")String Description
-    )
+    public final HealthService healthService;
+    public HealthController(HealthService healthService)
     {
-        serviceName=Name;
-        serviceDescription=Description;
+        this.healthService=healthService;
     }
     @RequestMapping
     public ResponseEntity<HealthResponseDTO> health()
     {
-        return ResponseEntity.ok(new HealthResponseDTO(serviceName,serviceDescription,"up"));
+        String dbStatus = healthService.getHealth();
+        return ResponseEntity.ok(new HealthResponseDTO("UP",dbStatus, LocalDateTime.now()));
     }
 }

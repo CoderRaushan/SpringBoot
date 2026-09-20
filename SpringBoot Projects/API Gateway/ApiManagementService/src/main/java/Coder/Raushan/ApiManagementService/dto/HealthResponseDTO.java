@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class HealthResponseDTO {
-    private String serviceName;
-    private String serviceDescription;
-    private String appStatus;
+    private String serviceStatus;
+    private String dbStatus;
+    private LocalDateTime time;
 }
